@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>用户信息列表 - 控制台</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="/assets/plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/assets/plugins/adminlte/css/adminlte.min.css">
+</head>
+<body class="hold-transition layout-top-nav">
+<div class="wrapper">
+
+    <div th:replace="include/nav::nav"></div>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+
+
+        <!-- Main content -->
+        <section class="content" style="padding-top: 100px">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-8 offset-md-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">用户信息</h3>
+                                <div class="card-tools  col-sm-2">
+                                    <form action="/admin/search" method="get">
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" name="keyword" class="form-control float-right" value=""
+                                                   placeholder="输入邮箱或昵称以查询">
+
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-default"><i
+                                                        class="fas fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <br>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body table-responsive p-0">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>邮箱</th>
+                                        <th>昵称</th>
+                                        <th>密码(这年头密码还是明文的，🐮🍺)</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="user:${userList}">
+                                        <td th:text="${user.getAdmin_id()}"></td>
+                                        <td th:text="${user.getAdmin_name()}"></td>
+                                        <td th:text="${user.getNickname()}"></td>
+                                        <td th:text="${user.getPassword()}"></td>
+                                        <td>
+                                            <button type="button" class="btn btn-flat btn-outline-info btn-sm"><i
+                                                    class="fa-search fa"></i>查看
+                                            </button>
+                                            <button type="button" class="btn btn-flat btn-outline-primary btn-sm"><i
+                                                    class="fa-edit fa"></i>编辑
+                                            </button>
+                                            <button type="button" class="btn btn-flat btn-outline-danger btn-sm"><i
+                                                    class="fa-trash fa"></i>删除
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!--/.col (left) -->
+                    <!-- right column -->
+                    <div class="col-md-6">
+
+                    </div>
+                    <!--/.col (right) -->
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+
+    </div>
+    <!-- /.content-wrapper -->
+
+
+    <div th:replace="include/footer::footer"></div>
+</div>
+<!-- ./wrapper -->
+<!-- jQuery -->
+<script src="/assets/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="/assets/plugins/jquery-validation/additional-methods.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/assets/plugins/adminlte/js/adminlte.min.js"></script>
+
+
+</body>
+</html>

@@ -13,6 +13,7 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     private LoginDao loginDao;
 
+    @Override
     public Admin login(LoginDTO loginDTO) {
         return loginDao.getAdminByLogin(loginDTO);
     }

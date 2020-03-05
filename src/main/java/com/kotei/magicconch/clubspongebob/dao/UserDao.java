@@ -4,6 +4,8 @@ import com.kotei.magicconch.clubspongebob.dto.RegisterDTO;
 import com.kotei.magicconch.clubspongebob.pojo.Admin;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface UserDao {
     /**
@@ -19,4 +21,10 @@ public interface UserDao {
      * @return 用户信息
      */
     public Admin getAdminByAdminName(String admin_name);
+
+    /**
+     * 得到全部用户信息
+     * @return 用户信息列表
+     */
+    public List<Admin> getAllAdmin();
 }

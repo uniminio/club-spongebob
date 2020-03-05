@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>注册 - 神奇海螺俱乐部</title>
+    <title>控制台 - 登陆 - 神奇海螺俱乐部</title>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="/assets/plugins/fontawesome-free/css/all.min.css">
@@ -19,6 +19,8 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+
+
         <!-- Main content -->
         <section class="content" style="padding-top: 100px">
             <div class="container-fluid">
@@ -28,38 +30,24 @@
                         <!-- jquery validation -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">为什么要问神奇海螺呢</h3>
+                                <h3 class="card-title">这里是控制台，欢迎回来，神奇海螺大人ヾ(•ω•`)o</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form role="form" id="quickForm" method="post" action="/register">
+                            <form role="form" id="quickForm" method="post" action="/login">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">邮箱地址</label>
-                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                        <label for="exampleInputEmail1">用户名<small>不是小的不相信神奇海螺大人...</small></label>
+                                        <input type="text" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Username">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputNickname">昵称</label>
-                                        <input type="text" name="nickname" class="form-control" id="exampleInputNickname" placeholder="Enter Nickname">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">密码</label>
+                                        <label for="exampleInputPassword1">密码<small>大人饶命啊（＞人＜；）</small></label>
                                         <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword2">确认密码</label>
-                                        <input type="password" name="password2" class="form-control" id="exampleInputPassword2" placeholder="Password">
-                                    </div>
-                                    <div class="form-group mb-0">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
-                                            <label class="custom-control-label" for="exampleCheck1">神奇海螺永远是对的</label>
-                                        </div>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">注册</button>
+                                    <button type="submit" class="btn btn-primary">登陆</button>
                                 </div>
                             </form>
                         </div>
@@ -77,7 +65,6 @@
         </section>
         <!-- /.content -->
 
-
     </div>
     <!-- /.content-wrapper -->
 
@@ -89,13 +76,13 @@
 <script src="/assets/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 <script src="/assets/plugins/jquery-validation/jquery.validate.min.js"></script>
 <script src="/assets/plugins/jquery-validation/additional-methods.min.js"></script>
-
 <!-- AdminLTE App -->
 <script src="/assets/plugins/adminlte/js/adminlte.min.js"></script>
 
-<script src="/assets/js/register_validate.js"></script>
+
+<script src="/assets/js/admin_login_validate.js"></script>
+
 </body>
 </html>

@@ -10,4 +10,8 @@
         SELECT * FROM Admin WHERE admin_name=#{admin_name}
     </select>
 
+    <select id="getAllAdmin" resultType="com.kotei.magicconch.clubspongebob.pojo.Admin">
+        SELECT * FROM Admin
+    </select>
+
 </mapper>

@@ -12,6 +12,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
+    @Override
     public boolean register(RegisterDTO registerDTO) {
         // 检测邮箱是否重名
         if (userDao.getAdminByAdminName(registerDTO.getEmail())==null&&validate(registerDTO))
