@@ -14,4 +14,16 @@
         SELECT * FROM Admin
     </select>
 
+    <update id="updateAdminByID" parameterType="com.kotei.magicconch.clubspongebob.pojo.Admin">
+        UPDATE Admin SET admin_name=#{admin_name},nickname=#{nickname},password=#{password} WHERE admin_id = #{admin_id}
+    </update>
+
+    <delete id="delAdminByID">
+        DELETE FROM Admin WHERE admin_id=#{id}
+    </delete>
+
+    <select id="getAdminBySearch" resultType="com.kotei.magicconch.clubspongebob.pojo.Admin">
+        SELECT * FROM Admin WHERE admin_id like '%${keyword}%' OR admin_name LIKE '%${keyword}%' OR nickname LIKE '%${keyword}%'
+    </select>
+
 </mapper>

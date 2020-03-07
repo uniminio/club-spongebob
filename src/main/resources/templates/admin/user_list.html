@@ -31,10 +31,10 @@
                             <div class="card-header">
                                 <h3 class="card-title">用户信息</h3>
                                 <div class="card-tools  col-sm-2">
-                                    <form action="/admin/search" method="get">
+                                    <form action="/admin/user/search" method="get">
                                         <div class="input-group input-group-sm">
-                                            <input type="text" name="keyword" class="form-control float-right" value=""
-                                                   placeholder="输入邮箱或昵称以查询">
+                                            <input type="text" name="keyword" class="form-control float-right" th:value="${keyword==null?'':keyword}"
+                                                   placeholder="输入ID或邮箱或昵称以查询">
 
                                             <div class="input-group-append">
                                                 <button type="submit" class="btn btn-default"><i
@@ -64,15 +64,146 @@
                                         <td th:text="${user.getNickname()}"></td>
                                         <td th:text="${user.getPassword()}"></td>
                                         <td>
-                                            <button type="button" class="btn btn-flat btn-outline-info btn-sm"><i
+                                            <button type="button" class="btn btn-flat btn-outline-info btn-sm"
+                                                    data-toggle="modal"
+                                                    th:data-target="${'#modelInfo'+user.getAdmin_id()}"><i
                                                     class="fa-search fa"></i>查看
                                             </button>
-                                            <button type="button" class="btn btn-flat btn-outline-primary btn-sm"><i
+                                            <!-- Modal -->
+                                            <div class="modal fade" th:id="${'modelInfo'+user.getAdmin_id()}"
+                                                 tabindex="-1"
+                                                 role="dialog" aria-labelledby="myModalLabel">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content bg-info">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title"
+                                                                th:text="${user.getNickname()+'的个人信息'}"></h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="form-group">
+                                                                <label>ID</label>
+                                                                <input type="text" name="text" class="form-control"
+                                                                       placeholder="Enter email"
+                                                                       th:value="${user.getAdmin_id()}"
+                                                                       readonly="readonly">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>邮箱地址</label>
+                                                                <input type="email" name="email" class="form-control"
+                                                                       placeholder="Enter email"
+                                                                       th:value="${user.getAdmin_name()}"
+                                                                       readonly="readonly">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>昵称</label>
+                                                                <input type="text" name="nickname" class="form-control"
+                                                                       placeholder="Enter Nickname"
+                                                                       th:value="${user.getNickname()}"
+                                                                       readonly="readonly">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>密码</label>
+                                                                <input type="text" name="password"
+                                                                       class="form-control"
+                                                                       placeholder="text"
+                                                                       th:value="${user.getPassword()}"
+                                                                       readonly="readonly">
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-outline-light"
+                                                                    data-dismiss="modal">关闭
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn btn-flat btn-outline-primary btn-sm"
+                                                    data-toggle="modal"
+                                                    th:data-target="${'#modelEdit'+user.getAdmin_id()}"><i
                                                     class="fa-edit fa"></i>编辑
                                             </button>
-                                            <button type="button" class="btn btn-flat btn-outline-danger btn-sm"><i
+                                            <!-- Modal -->
+                                            <div class="modal fade" th:id="${'modelEdit'+user.getAdmin_id()}"
+                                                 tabindex="-1"
+                                                 role="dialog" aria-labelledby="myModalLabel">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content bg-primary">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title"
+                                                                th:text="${user.getNickname()+'的个人信息'}"></h4>
+                                                        </div>
+                                                        <form role="form" id="quickForm" method="post"
+                                                              th:action="${'/admin/user/edit/'+user.getAdmin_id()}">
+                                                            <div class="modal-body">
+
+                                                                <div class="form-group">
+                                                                    <label>ID</label>
+                                                                    <input type="text" name="id" class="form-control"
+                                                                           placeholder="Enter email"
+                                                                           th:value="${user.getAdmin_id()}"
+                                                                           readonly="readonly">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>邮箱地址</label>
+                                                                    <input type="email" name="email"
+                                                                           class="form-control"
+                                                                           placeholder="Enter email"
+                                                                           th:value="${user.getAdmin_name()}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>昵称</label>
+                                                                    <input type="text" name="nickname"
+                                                                           class="form-control"
+                                                                           placeholder="Enter Nickname"
+                                                                           th:value="${user.getNickname()}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>密码</label>
+                                                                    <input type="text" name="password"
+                                                                           class="form-control"
+                                                                           placeholder="text"
+                                                                           th:value="${user.getPassword()}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-outline-light">修改
+                                                                </button>
+                                                                <button type="button" class="btn btn-outline-light"
+                                                                        data-dismiss="modal">关闭
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn btn-flat btn-outline-danger btn-sm" data-toggle="modal"
+                                                    th:data-target="${'#modelDel'+user.getAdmin_id()}"><i
                                                     class="fa-trash fa"></i>删除
                                             </button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" th:id="${'modelDel'+user.getAdmin_id()}"
+                                                 tabindex="-1"
+                                                 role="dialog" aria-labelledby="myModalLabel">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content bg-danger">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title"
+                                                                th:text="'确认删除'+${user.getNickname()+'的个人信息？'}"></h4>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a th:href="${'/admin/user/del/'+user.getAdmin_id()}">
+                                                                <button type="button" class="btn btn-outline-light">删除
+                                                                </button>
+                                                            </a>
+
+                                                            <button type="button" class="btn btn-outline-light"
+                                                                    data-dismiss="modal">关闭
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
 
@@ -105,11 +236,12 @@
 <!-- jQuery -->
 <script src="/assets/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="/assets/plugins/jquery-validation/jquery.validate.min.js"></script>
 <script src="/assets/plugins/jquery-validation/additional-methods.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/assets/plugins/adminlte/js/adminlte.min.js"></script>
+<script src="/assets/js/register_validate.js"></script>
 
 
 </body>

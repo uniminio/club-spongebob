@@ -27,4 +27,25 @@ public interface UserDao {
      * @return 用户信息列表
      */
     public List<Admin> getAllAdmin();
+
+    /**
+     * 更改用户信息
+     * @param admin 更改后的用户信息
+     * @return 影响行数
+     */
+    public int updateAdminByID(Admin admin);
+
+    /**
+     * 删除指定id的用户信息
+     * @param id admin_id
+     * @return 影响行数
+     */
+    public int delAdminByID(String id);
+
+    /**
+     * 根据关键字查询用户信息
+     * @param keyword 关键字
+     * @return 用户信息列表
+     */
+    public List<Admin> getAdminBySearch(String keyword);
 }
