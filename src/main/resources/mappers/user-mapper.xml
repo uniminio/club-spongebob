@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kotei.magicconch.clubspongebob.dao.UserDao">
     <insert id="insertAdminByRegister" parameterType="com.kotei.magicconch.clubspongebob.pojo.Admin">
-        INSERT INTO Admin(admin_name, nickname, password) VALUES(#{admin_name},#{nickname},#{password})
+        INSERT INTO Admin(admin_name, nickname,head_img, password) VALUES(#{admin_name},#{nickname},#{head_img},#{password})
     </insert>
     
     <select id="getAdminByAdminName" resultType="com.kotei.magicconch.clubspongebob.pojo.Admin">

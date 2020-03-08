@@ -30,7 +30,9 @@ public class ArticleServiceImpl implements ArticleService {
         article.setClick(0);
         article.setContent(articleDTO.getContent());
         article.setPub_date(new Date());
-        article.setSummary(HtmlUtil.Html2Text(articleDTO.getContent()).substring(0,200));
+
+        String s = HtmlUtil.Html2Text(articleDTO.getContent());
+        article.setSummary(s.substring(0,Math.min(s.length(),200)));
         article.setKeywords(articleDTO.getKeywords());
         article.setTitle(articleDTO.getTitle());
         return articleDao.insertArticle(article)>0;

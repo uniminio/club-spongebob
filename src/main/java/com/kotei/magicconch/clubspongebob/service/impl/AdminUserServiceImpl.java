@@ -24,7 +24,7 @@ public class AdminUserServiceImpl implements AdminUserService {
     public boolean updateUserByID(String id,RegisterDTO registerDTO) {
 
         // 检测邮箱是否重名
-        if (userDao.getAdminByAdminName(registerDTO.getEmail())==null)
+//        if (userDao.getAdminByAdminName(registerDTO.getEmail())==null)
         {
             Admin user = new Admin();
             user.setAdmin_id(Integer.parseInt(id));
@@ -33,7 +33,7 @@ public class AdminUserServiceImpl implements AdminUserService {
             user.setPassword(registerDTO.getPassword());
             return userDao.updateAdminByID(user)>0;
         }
-        return false;
+//        return false;
     }
 
     @Override

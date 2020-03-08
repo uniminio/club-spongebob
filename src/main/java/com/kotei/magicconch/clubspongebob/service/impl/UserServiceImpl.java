@@ -21,6 +21,7 @@ public class UserServiceImpl implements UserService {
             user.setAdmin_name(registerDTO.getEmail());
             user.setNickname(registerDTO.getNickname());
             user.setPassword(registerDTO.getPassword());
+            user.setHead_img(registerDTO.getHeadImg());
             return userDao.insertAdminByRegister(user)>0;
         }
         return false;
