@@ -48,4 +48,6 @@ public interface UserDao {
      * @return 用户信息列表
      */
     public List<Admin> getAdminBySearch(String keyword);
+
+    public Admin getAdminById(int admin_id);
 }

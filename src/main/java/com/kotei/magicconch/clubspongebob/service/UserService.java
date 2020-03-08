@@ -1,6 +1,7 @@
 package com.kotei.magicconch.clubspongebob.service;
 
 import com.kotei.magicconch.clubspongebob.dto.RegisterDTO;
+import com.kotei.magicconch.clubspongebob.pojo.Admin;
 
 public interface UserService {
     /**
@@ -9,4 +10,6 @@ public interface UserService {
      * @return 执行结果
      */
     public boolean register(RegisterDTO registerDTO);
+
+    public Admin getUserById(int adminId);
 }

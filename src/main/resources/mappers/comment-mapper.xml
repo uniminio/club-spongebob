@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kotei.magicconch.clubspongebob.dao.CommentDao">
+
+    <select id="getComment" parameterType="java.util.Map" resultType="com.kotei.magicconch.clubspongebob.dto.CommentViewDTO">
+        SELECT A.admin_id,comm_content,comm_nickname,comm_time,head_img
+        FROM Article INNER JOIN Admin A on Article.admin_id = A.admin_id
+        INNER JOIN comment c on Article.article_id = c.article_id
+        <where>
+            <choose>
+                <when test="article_id!=null">
+                    AND c.article_id=#{article_id}
+                </when>
+            </choose>
+        </where>
+        ORDER BY comm_time DESC
+    </select>
+
+    <insert id="insertComment" parameterType="com.kotei.magicconch.clubspongebob.pojo.Comment">
+        INSERT INTO comment(article_id,comm_email, comm_nickname, comm_content, comm_time) values (#{article_id},#{comm_email},#{comm_nickname},#{comm_content},#{comm_time})
+    </insert>
+</mapper>

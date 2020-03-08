@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title th:text="${session.user.nickname+'的个人空间 - 神奇海螺俱乐部'}"></title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="/assets/plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/assets/plugins/adminlte/css/adminlte.min.css">
+</head>
+<body class="hold-transition layout-top-nav">
+<div class="wrapper">
+
+    <div th:replace="include/nav::nav"></div>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Main content -->
+        <section class="content col-md-8 offset-md-2" style="padding-top: 30px">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3">
+
+                        <!-- Profile Image -->
+                        <div class="card card-primary card-outline">
+                            <div class="card-body box-profile">
+                                <div class="text-center">
+                                    <img class="profile-user-img img-fluid img-circle"
+                                         th:src="${otherUser.getHead_img()}"
+                                         alt="User profile picture">
+                                </div>
+
+                                <h3 class="profile-username text-center" th:text="${otherUser.getNickname()}"></h3>
+
+                                <p class="text-muted text-center">不知道写些什么</p>
+
+                                <ul class="list-group list-group-unbordered mb-3">
+                                    <li class="list-group-item">
+                                        <b>发表文章</b> <a class="float-right">2</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>评论</b> <a class="float-right">0</a>
+                                    </li>
+                                </ul>
+
+                                <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header p-2">
+                            </div><!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <div th:replace="include/article::content"></div>
+                                    <!-- /.tab-pane -->
+                                </div>
+                                <!-- /.tab-content -->
+                            </div><!-- /.card-body -->
+                            <div class="card-footer">
+                                <div class="card-comment" th:each="comment:${comments}">
+                                    <!-- User image -->
+                                    <img class="img-circle img-sm" th:src="${comment.getHead_img()}" alt="User Image">
+                                    <div class="comment-text">
+                                        <a th:href="${'/user/'+comment.getAdmin_id()}">
+                                            <span class="username" th:text="${comment.getComm_nickname()}"></span>
+                                        </a>
+                                        <span class="text-muted float-right" th:text="${comment.getComm_time()}"></span>
+                                        <p th:text="${comment.getComm_content()}"></p>
+                                        <hr>
+                                    </div>
+                                    <!-- /.comment-text -->
+                                </div>
+                                <!-- /.card-comment -->
+                            </div>
+                        </div>
+                        <!-- /.nav-tabs-custom -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+
+
+    </div>
+    <!-- /.content-wrapper -->
+
+
+    <div th:replace="include/footer::footer"></div>
+</div>
+<!-- ./wrapper -->
+<!-- jQuery -->
+<script src="/assets/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/assets/plugins/adminlte/js/adminlte.min.js"></script>
+</body>
+</html>

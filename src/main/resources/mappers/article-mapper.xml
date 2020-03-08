@@ -6,4 +6,27 @@
     <insert id="insertArticle" parameterType="com.kotei.magicconch.clubspongebob.pojo.Article">
         INSERT INTO Article(catalog_id, admin_id, title, keywords, summary, content, pub_date, click) VALUES (#{catalog_id}, #{admin_id}, #{title}, #{keywords}, #{summary}, #{content}, #{pub_date}, #{click})
     </insert>
+
+    <select id="getArticle" resultType="com.kotei.magicconch.clubspongebob.dto.ArticleViewDTO" parameterType="java.util.Map">
+        SELECT Admin.admin_id,nickname,summary,click,content,head_img,pub_date,title,article_id
+        FROM Article INNER JOIN Admin  on Article.admin_id = Admin.admin_id
+        <where>
+            <choose>
+                <when test="admin_id != null">
+                    AND Admin.admin_id = #{admin_id}
+                </when>
+                <when test="article_id != null">
+                    AND article_id = #{article_id}
+                </when>
+            </choose>
+        </where>
+        ORDER BY pub_date DESC
+        <if test="limit != null">
+            LIMIT limit
+        </if>
+    </select>
+
+    <update id="clickAdd1">
+        UPDATE Article SET click=click+1 WHERE article_id=#{article_id}
+    </update>
 </mapper>

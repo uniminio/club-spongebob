@@ -2,7 +2,6 @@ package com.kotei.magicconch.clubspongebob.controller;
 
 import com.kotei.magicconch.clubspongebob.dto.RegisterDTO;
 import com.kotei.magicconch.clubspongebob.service.AdminUserService;
-import com.sun.org.glassfish.gmbal.ParameterNames;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -26,6 +26,11 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+    @Override
+    public Admin getUserById(int adminId) {
+        return userDao.getAdminById(adminId);
+    }
+
     /**
      * 后端表单验证，不要以为前端做了表单验证后端就不用做了，
      * 万一别人禁用了js或者使用postman前端验证就是个摆设
