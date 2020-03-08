@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>注册 - 神奇海螺俱乐部</title>
+    <title>文章发布 - 神奇海螺俱乐部</title>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="/assets/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/assets/plugins/adminlte/css/adminlte.min.css">
+    <link rel="stylesheet" href="/assets/plugins/summernote/summernote-bs4.css">
 </head>
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">
@@ -24,48 +25,41 @@
             <div class="container-fluid">
                 <div class="row">
                     <!-- left column -->
-                    <div class="col-md-4 offset-md-4">
+                    <div class="col-md-8 offset-md-2">
                         <!-- jquery validation -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">为什么要问神奇海螺呢</h3>
+                                <h3 class="card-title">快来向神奇海螺分享你的喜悦吧</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form role="form" id="quickForm" method="post" action="/register">
+                            <form role="form" id="quickForm" method="post" action="/article/publish">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">邮箱地址</label>
-                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1"
-                                               placeholder="Enter email">
+                                        <label for="exampleInputEmail1">标题</label>
+                                        <input type="text" name="title" class="form-control" id="exampleInputEmail1"
+                                               placeholder="Enter title">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputNickname">昵称</label>
-                                        <input type="text" name="nickname" class="form-control"
-                                               id="exampleInputNickname" placeholder="Enter Nickname">
+                                        <label for="keywords">关键字<small>便于搜索(大概)</small></label>
+                                        <input type="text" name="keywords" class="form-control" id="keywords"
+                                               placeholder="Enter keywords">
+                                    </div>
+                                    <!-- select -->
+                                    <div class="form-group">
+                                        <label>分类</label>
+                                        <select class="form-control col-md-2" name="catalogId">
+                                            <option value="1">神奇海螺茶会</option>
+                                            <option value="2">技术分享</option>
+                                            <option value="3">游戏攻略</option>
+                                            <option value="4">资源分享</option>
+                                            <option value="5">其他内容</option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>头像</label>
-                                        <input type="text" name="headImg" id="headImg" hidden="hidden" value="/assets/img/user/user1.png">
-                                    </div>
-                                    <div class="row">
-                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="max-height: 50px">
-                                            选择头像
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <img class="img-circle img-size-64 head" th:each="i:${#numbers.sequence(1,14)}" th:src="${'/assets/img/user/user'+i+'.png'}" alt="">
-                                        </div>
-                                        <img class="img-circle img-size-64 head" id="head" src="/assets/img/user/user1.png" alt="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">密码</label>
-                                        <input type="password" name="password" class="form-control"
-                                               id="exampleInputPassword1" placeholder="Password">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword2">确认密码</label>
-                                        <input type="password" name="password2" class="form-control"
-                                               id="exampleInputPassword2" placeholder="Password">
+                                        <label>正文</label>
+                                        <textarea class="textarea" name="content" placeholder="Place some text here"
+                                                  style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                                     </div>
                                     <div class="form-group mb-0">
                                         <div class="custom-control custom-checkbox">
@@ -77,7 +71,7 @@
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">注册</button>
+                                    <button type="submit" class="btn btn-primary">发布</button>
                                 </div>
                             </form>
                         </div>
@@ -95,7 +89,6 @@
         </section>
         <!-- /.content -->
 
-
     </div>
     <!-- /.content-wrapper -->
 
@@ -107,21 +100,18 @@
 <script src="/assets/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<script src="/assets/plugins/jquery-validation/jquery.validate.min.js"></script>
-<script src="/assets/plugins/jquery-validation/additional-methods.min.js"></script>
-
 <!-- AdminLTE App -->
 <script src="/assets/plugins/adminlte/js/adminlte.min.js"></script>
+<script src="/assets/plugins/summernote/summernote-bs4.min.js"></script>
+<script src="/assets/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="/assets/plugins/jquery-validation/additional-methods.min.js"></script>
+<script src="/assets/js/article_publish_validate.js"></script>
 
-<script src="/assets/js/register_validate.js"></script>
 <script>
-    $(document).ready(function () {
-        $(".head").click(function () {
-            $("#head").attr("src",$(this).attr("src"));
-            $("#headImg").attr("value",$(this).attr("src"));
-        })
-    });
+    $(function () {
+        // Summernote
+        $('.textarea').summernote()
+    })
 </script>
 </body>
 </html>

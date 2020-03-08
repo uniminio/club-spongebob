@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kotei.magicconch.clubspongebob.dao.CatalogDao">
+
+    <insert id="insertCatalog" parameterType="com.kotei.magicconch.clubspongebob.pojo.Catalog">
+        INSERT INTO Catalog(name,descr) VALUES(#{name},#{descr})
+    </insert>
+
+</mapper>

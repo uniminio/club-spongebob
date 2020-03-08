@@ -76,7 +76,7 @@
             <!--/*@thymesVar id="user" type="com.kotei.magicconch.clubspongebob.pojo.Admin"*/-->
             <li th:if="${session.user!=null}" class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
-                    <img src="/assets/img/user/user1.png" alt=""
+                    <img th:src="${session.user.head_img}" alt=""
                          class="brand-image img-circle elevation-3 img-size-33">
                     <!--/*@thymesVar id="nickname" type="java.lang.String"*/-->
                     <!--/*@thymesVar id="user" type="com.kotei.magicconch.clubspongebob.pojo.Admin"*/-->
@@ -85,6 +85,10 @@
                     </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-md dropdown-menu-left">
+                    <a href="/article/publish" class="dropdown-item dropdown-footer">发布文章</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="/user/profile" class="dropdown-item dropdown-footer">个人空间</a>
+                    <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item dropdown-footer">个人信息</a>
                     <div class="dropdown-divider"></div>
                     <a href="/logout" class="dropdown-item dropdown-footer"><i class="fas fa-door-open"></i> 登出</a>
