@@ -21,6 +21,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
         String [] excludePathPatterns={
                 "/",
                 "/login",
+                "/article/**",
                 "/register",
                 "/admin/**",
                 "/assets/**"
