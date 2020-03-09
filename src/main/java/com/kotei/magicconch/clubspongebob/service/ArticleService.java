@@ -12,4 +12,8 @@ public interface ArticleService {
     public List<ArticleViewDTO> getArticle(Map map);
 
     public int clickAdd1(int articleId);
+
+    public int getCount(int adminId);
+
+    public List<ArticleViewDTO> search(String keyword);
 }

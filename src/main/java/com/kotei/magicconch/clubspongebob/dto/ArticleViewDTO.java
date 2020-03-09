@@ -8,6 +8,7 @@ import java.util.Date;
 public class ArticleViewDTO {
     private int admin_id;
     private int article_id;
+    private String name;
     private String nickname;
     private String head_img;
     private String title;
@@ -15,4 +16,6 @@ public class ArticleViewDTO {
     private String content;
     private Date pub_date;
     private int click;
+    private String time;
+    private int comment_count;
 }

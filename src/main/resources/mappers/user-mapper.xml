@@ -15,7 +15,7 @@
     </select>
 
     <update id="updateAdminByID" parameterType="com.kotei.magicconch.clubspongebob.pojo.Admin">
-        UPDATE Admin SET admin_name=#{admin_name},nickname=#{nickname},password=#{password} WHERE admin_id = #{admin_id}
+        UPDATE Admin SET admin_name=#{admin_name},nickname=#{nickname},password=#{password},head_img=#{head_img} WHERE admin_id = #{admin_id}
     </update>
 
     <delete id="delAdminByID">

@@ -32,9 +32,9 @@
             </ul>
 
             <!-- SEARCH FORM -->
-            <form class="form-inline ml-0 ml-md-3">
+            <form class="form-inline ml-0 ml-md-3" action="/article/search" method="get">
                 <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="搜索" aria-label="Search">
+                    <input name="keyword" class="form-control form-control-navbar" type="search" placeholder="搜索" aria-label="Search">
                     <div class="input-group-append">
                         <button class="btn btn-navbar" type="submit">
                             <i class="fas fa-search"></i>
@@ -51,25 +51,28 @@
             <li th:if="${session.user!=null}" class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
                     <i class="fas fa-comments"></i>
-                    <span class="badge badge-danger navbar-badge">99</span>
+                    <span class="badge badge-danger navbar-badge" th:text="${session.comments.size()==0?'':session.comments.size()}">99</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <a href="#" class="dropdown-item">
-                        <!-- Message Start -->
-                        <div class="media">
-                            <img src="/assets/img/user/user2.png" alt="img" class="img-size-50 mr-3 img-circle">
-                            <div class="media-body">
-                                <h3 class="dropdown-item-title">
-                                    鬼切
-                                    <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                                </h3>
-                                <p class="text-sm">我不知道</p>
-                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i>500年前</p>
+                    <div th:each="comment:${session.comments}">
+                        <a th:href="${'/comment/'+comment.getComm_id()}" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img th:src="${comment.getHead_img()}" alt="img" class="img-size-50 mr-3 img-circle">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title" th:text="${comment.getNickname()}">
+                                        鬼切
+                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm" th:text="${comment.getComm_content()}">我不知道</p>
+                                    <i class="far fa-clock mr-1"></i><span class="text-sm text-muted" th:text="${comment.getTime()}"></span>
+                                </div>
                             </div>
-                        </div>
-                        <!-- Message End -->
-                    </a>
-                    <div class="dropdown-divider"></div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                    </div>
+
                     <a href="#" class="dropdown-item dropdown-footer">显示全部消息</a>
                 </div>
             </li>

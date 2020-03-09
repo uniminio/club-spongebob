@@ -8,8 +8,10 @@ import java.util.Date;
 public class Comment {
     private int comm_id;
     private int article_id;
+    private int admin_id;
     private String comm_nickname;
     private String comm_email;
     private String comm_content;
     private Date comm_time;
+    private boolean notify;
 }

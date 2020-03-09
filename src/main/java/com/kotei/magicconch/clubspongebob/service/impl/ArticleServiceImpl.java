@@ -11,6 +11,7 @@ import com.kotei.magicconch.clubspongebob.util.HtmlUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -32,19 +33,36 @@ public class ArticleServiceImpl implements ArticleService {
         article.setPub_date(new Date());
 
         String s = HtmlUtil.Html2Text(articleDTO.getContent());
-        article.setSummary(s.substring(0,Math.min(s.length(),200)));
+        article.setSummary(s.substring(0, Math.min(s.length(), 200)));
         article.setKeywords(articleDTO.getKeywords());
         article.setTitle(articleDTO.getTitle());
-        return articleDao.insertArticle(article)>0;
+        return articleDao.insertArticle(article) > 0;
     }
 
     @Override
     public List<ArticleViewDTO> getArticle(Map map) {
-        return articleDao.getArticle(map);
+        List<ArticleViewDTO> articles = articleDao.getArticle(map);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        for (ArticleViewDTO article :
+                articles) {
+            article.setTime(sdf.format(article.getPub_date()));
+        }
+        return articles;
     }
 
     @Override
     public int clickAdd1(int articleId) {
         return articleDao.clickAdd1(articleId);
+    }
+
+    @Override
+    public int getCount(int adminId) {
+
+        return articleDao.getCount(adminId);
+    }
+
+    @Override
+    public List<ArticleViewDTO> search(String keyword) {
+        return articleDao.search(keyword);
     }
 }

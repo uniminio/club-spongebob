@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title th:text="${article.getTitle()+' - 神奇海螺俱乐部'}"></title>
+    <title th:text="${otherUser.getNickname()+'的个人空间 - 神奇海螺俱乐部'}"></title>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="/assets/plugins/fontawesome-free/css/all.min.css">
@@ -31,33 +31,26 @@
                         <!-- /.card -->
                     </div>
                     <!-- /.col -->
+                    <!-- /.col -->
                     <div class="col-md-9">
                         <div class="card">
                             <div class="card-header p-2">
+                                <ul class="nav nav-pills">
+                                    <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">动态</a>
+                                    </li>
                             </div><!-- /.card-header -->
                             <div class="card-body">
                                 <div class="tab-content">
-                                    <div th:replace="include/article::content"></div>
-                                    <!-- /.tab-pane -->
+
+                                    <div class="active tab-pane" id="activity">
+                                        <div th:each="article:${myArticles}">
+                                            <div th:replace="include/article::summary"></div>
+                                            <br>
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- /.tab-content -->
                             </div><!-- /.card-body -->
-                            <div class="card-footer">
-                                <div class="card-comment" th:each="comment:${comments}">
-                                    <!-- User image -->
-                                    <img class="img-circle img-sm" th:src="${comment.getHead_img()}" alt="User Image">
-                                    <div class="comment-text">
-                                        <a th:href="${'/user/'+comment.getAdmin_id()}">
-                                            <span class="username" th:text="${comment.getNickname()}"></span>
-                                        </a>
-                                        <span class="text-muted float-right" th:text="${comment.getTime()}"></span>
-                                        <p th:text="${comment.getComm_content()}"></p>
-                                        <hr>
-                                    </div>
-                                    <!-- /.comment-text -->
-                                </div>
-                                <!-- /.card-comment -->
-                            </div>
                         </div>
                         <!-- /.nav-tabs-custom -->
                     </div>

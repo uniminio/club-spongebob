@@ -4,13 +4,16 @@
 <mapper namespace="com.kotei.magicconch.clubspongebob.dao.CommentDao">
 
     <select id="getComment" parameterType="java.util.Map" resultType="com.kotei.magicconch.clubspongebob.dto.CommentViewDTO">
-        SELECT A.admin_id,comm_content,comm_nickname,comm_time,head_img
-        FROM Article INNER JOIN Admin A on Article.admin_id = A.admin_id
-        INNER JOIN comment c on Article.article_id = c.article_id
+        SELECT c.admin_id,comm_content,comm_nickname,comm_time,head_img,c.article_id,nickname
+        FROM comment c INNER JOIN Admin A on c.admin_id = A.admin_id
+        INNER JOIN Article a ON a.article_id = c.article_id
         <where>
             <choose>
                 <when test="article_id!=null">
                     AND c.article_id=#{article_id}
+                </when>
+                <when test="comm_id!=null">
+                    AND c.comm_id=#{comm_id}
                 </when>
             </choose>
         </where>
@@ -18,6 +21,22 @@
     </select>
 
     <insert id="insertComment" parameterType="com.kotei.magicconch.clubspongebob.pojo.Comment">
-        INSERT INTO comment(article_id,comm_email, comm_nickname, comm_content, comm_time) values (#{article_id},#{comm_email},#{comm_nickname},#{comm_content},#{comm_time})
+        INSERT INTO comment(article_id,admin_id, comm_email, comm_nickname, comm_content, comm_time) values (#{article_id},#{admin_id},#{comm_email},#{comm_nickname},#{comm_content},#{comm_time})
     </insert>
+
+    <select id="getCount" resultType="int">
+        SELECT COUNT(*) FROM comment WHERE comm_email=#{comm_email}
+    </select>
+
+    <select id="getNotify" resultType="com.kotei.magicconch.clubspongebob.dto.CommentViewDTO">
+        SELECT c.admin_id,comm_content,comm_nickname,comm_time,head_img,c.article_id,comm_id
+        FROM Article INNER JOIN Admin A on Article.admin_id = A.admin_id
+        INNER JOIN comment c on Article.article_id = c.article_id
+        WHERE notify = false AND A.admin_id = #{admin_id}
+        ORDER BY comm_time DESC
+    </select>
+
+    <update id="updateNotify">
+        UPDATE comment SET notify=true WHERE comm_id = #{comm_id}
+    </update>
 </mapper>

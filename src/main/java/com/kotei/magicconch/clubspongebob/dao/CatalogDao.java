@@ -3,6 +3,8 @@ package com.kotei.magicconch.clubspongebob.dao;
 import com.kotei.magicconch.clubspongebob.pojo.Catalog;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface CatalogDao {
     /**
@@ -11,4 +13,6 @@ public interface CatalogDao {
      * @return 影响行数
      */
     public int insertCatalog(Catalog catalog);
+
+    public List<Catalog> getAllCatalog();
 }

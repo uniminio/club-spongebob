@@ -7,4 +7,9 @@
         INSERT INTO Catalog(name,descr) VALUES(#{name},#{descr})
     </insert>
 
+    <select id="getAllCatalog" resultType="com.kotei.magicconch.clubspongebob.pojo.Catalog">
+        SELECT * FROM Catalog
+    </select>
+
+
 </mapper>

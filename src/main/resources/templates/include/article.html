@@ -11,10 +11,11 @@
         <img class="img-circle img-bordered-sm"
              th:src="${article.getHead_img()}" alt="User Image">
         <span class="username">
-                          <a th:href="${'/user/space/'+article.getAdmin_id()}" th:text="${article.getNickname()}"></a>
-                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                        </span>
-        <span class="description" th:text="${article.getPub_date().toString()}"></span>
+            <a th:href="${'/user/'+article.getAdmin_id()}" th:text="${article.getNickname()}"></a>
+            <span style="margin-left: 30%;color: #b3aeb4" th:text="${article.getName()}"></span>
+            <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
+        </span>
+        <span class="description" th:text="${article.getTime()}"></span>
     </div>
     <!-- /.user-block -->
     <div class="card-body">
@@ -27,12 +28,12 @@
 
     <div class="card-footer">
         <p>
-            <i class="fas fa-eye mr-1"></i><span href="#" class="link-black text-sm mr-2" th:text="${article.getClick()}"></span>
+            <i class="fas fa-eye mr-1"></i><span href="#" class="link-black text-sm mr-2"
+                                                 th:text="${article.getClick()}"></span>
             <span class="float-right">
-                          <a href="#" class="link-black text-sm">
-                            <i class="far fa-comments mr-1"></i> Comments (5)
-                          </a>
-                        </span>
+                <i class="far fa-comments mr-1"></i>
+                <a href="#" class="link-black text-sm" th:text="${article.getComment_count()}"></a>
+            </span>
         </p>
     </div>
 </div>
@@ -46,17 +47,17 @@
     <p>
         <i class="fas fa-eye mr-1"></i><a href="#" class="link-black text-sm mr-2" th:text="${article.getClick()}"></a>
         <span class="float-right">
-                          <a href="#" class="link-black text-sm">
-                            <i class="far fa-comments mr-1"></i> Comments (5)
-                          </a>
-                        </span>
+            <i class="far fa-comments mr-1"></i>
+            <a href="#" class="link-black text-sm" th:text="${article.getComment_count()}"></a>
+        </span>
     </p>
 
-    <form class="form-horizontal" method="post" action="/article/comment">
+    <form th:if="${session.user!=null}" class="form-horizontal" method="post" action="/article/comment">
 
         <div class="input-group input-group-sm mb-0">
             <input class="form-control form-control-sm" name="comm_content" placeholder="优质回答：我不知道">
-            <input class="form-control form-control-sm" name="article_id" hidden="hidden" th:value="${article.getArticle_id()}">
+            <input class="form-control form-control-sm" name="article_id" hidden="hidden"
+                   th:value="${article.getArticle_id()}">
 
             <div class="input-group-append">
                 <button type="submit" class="btn btn-outline-primary">评论</button>
@@ -72,7 +73,7 @@
         <a th:href="${'/user/'+comment.getAdmin_id()}">
             <span class="username" th:text="${comment.getComm_nickname()}"></span>
         </a>
-        <span class="text-muted float-right" th:text="${comment.getComm_time()}"></span>
+        <span class="text-muted float-right" th:text="${comment.getTime()}"></span>
         <p th:text="${comment.getComm_content()}"></p>
     </div>
     <!-- /.comment-text -->

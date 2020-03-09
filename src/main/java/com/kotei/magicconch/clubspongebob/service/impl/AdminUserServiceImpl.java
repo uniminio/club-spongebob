@@ -31,6 +31,7 @@ public class AdminUserServiceImpl implements AdminUserService {
             user.setAdmin_name(registerDTO.getEmail());
             user.setNickname(registerDTO.getNickname());
             user.setPassword(registerDTO.getPassword());
+            user.setHead_img(registerDTO.getHeadImg());
             return userDao.updateAdminByID(user)>0;
         }
 //        return false;

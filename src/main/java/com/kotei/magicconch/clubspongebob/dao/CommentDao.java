@@ -18,4 +18,9 @@ public interface CommentDao {
 
     public int insertComment(Comment comment);
 
+    public int getCount(String comm_email);
+
+    public List<CommentViewDTO> getNotify(int admin_id);
+
+    public int updateNotify(int comm_id);
 }
