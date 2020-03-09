@@ -49,7 +49,8 @@ public class InterceptorConfig implements WebMvcConfigurer {
         String[]addPathPatterns3={"/admin/**"};
         //不需要拦截的路径
         String [] excludePathPatterns3={
-                "/admin/login"
+                "/admin/login",
+                "/assets/**"
         };
         registry.addInterceptor(new AdminLoginInterceptor())
                 .addPathPatterns(addPathPatterns3)

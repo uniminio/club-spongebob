@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 public class AdminLoginController {
     @RequestMapping(value = "/admin/login",method = RequestMethod.GET)
     public String loginPage() {
-        return "/admin/login";
+        return "admin/login";
     }
 
     @RequestMapping(value = "/admin/login",method = RequestMethod.POST)

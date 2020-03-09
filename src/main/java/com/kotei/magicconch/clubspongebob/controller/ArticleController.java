@@ -37,7 +37,7 @@ public class ArticleController {
     @RequestMapping(value = "/article/publish",method = RequestMethod.GET)
     public String publish(Model model) {
         model.addAttribute("catalogs",catalogService.getAllCatalog());
-        return "/article/pub_article";
+        return "article/pub_article";
     }
 
     @RequestMapping(value = "/article/publish",method = RequestMethod.POST)
