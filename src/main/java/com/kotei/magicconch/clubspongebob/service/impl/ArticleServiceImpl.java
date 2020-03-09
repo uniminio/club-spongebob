@@ -41,6 +41,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<ArticleViewDTO> getArticle(Map map) {
+        map.put("limit",10);
         List<ArticleViewDTO> articles = articleDao.getArticle(map);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         for (ArticleViewDTO article :

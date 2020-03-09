@@ -17,6 +17,7 @@ public class CommentServiceImpl implements CommentService {
     private CommentDao commentDao;
     @Override
     public List<CommentViewDTO> getComment(Map map) {
+        map.put("limit",10);
         List<CommentViewDTO> comments = commentDao.getComment(map);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         for (CommentViewDTO comment :

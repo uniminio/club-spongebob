@@ -18,6 +18,9 @@
             </choose>
         </where>
         ORDER BY comm_time DESC
+        <if test="limit != null">
+            LIMIT limit
+        </if>
     </select>
 
     <insert id="insertComment" parameterType="com.kotei.magicconch.clubspongebob.pojo.Comment">
