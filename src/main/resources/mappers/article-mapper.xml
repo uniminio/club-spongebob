@@ -31,7 +31,7 @@
         </where>
         ORDER BY pub_date DESC
         <if test="limit != null">
-            LIMIT limit
+            LIMIT #{limit}
         </if>
     </select>
 

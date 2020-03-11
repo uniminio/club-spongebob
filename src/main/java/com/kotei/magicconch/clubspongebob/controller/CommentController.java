@@ -38,6 +38,9 @@ public class CommentController {
         if (admin.getAdmin_id() == article.getAdmin_id()) {
             comment.setNotify(true);
         }
+        else {
+            comment.setNotify(false);
+        }
         commentService.insertComment(comment);
         return "redirect:/article/"+comment.getArticle_id();
     }

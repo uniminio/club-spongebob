@@ -18,10 +18,13 @@
             </choose>
         </where>
         ORDER BY comm_time DESC
+        <if test="limit != null">
+            LIMIT #{limit}
+        </if>
     </select>
 
     <insert id="insertComment" parameterType="com.kotei.magicconch.clubspongebob.pojo.Comment">
-        INSERT INTO comment(article_id,admin_id, comm_email, comm_nickname, comm_content, comm_time) values (#{article_id},#{admin_id},#{comm_email},#{comm_nickname},#{comm_content},#{comm_time})
+        INSERT INTO comment(article_id,admin_id, comm_email, comm_nickname, comm_content, comm_time,notify) values (#{article_id},#{admin_id},#{comm_email},#{comm_nickname},#{comm_content},#{comm_time},#{notify})
     </insert>
 
     <select id="getCount" resultType="int">
@@ -29,9 +32,10 @@
     </select>
 
     <select id="getNotify" resultType="com.kotei.magicconch.clubspongebob.dto.CommentViewDTO">
-        SELECT c.admin_id,comm_content,comm_nickname,comm_time,head_img,c.article_id,comm_id
+        SELECT c.admin_id,comm_content,comm_nickname,comm_time,d.head_img,c.article_id,comm_id
         FROM Article INNER JOIN Admin A on Article.admin_id = A.admin_id
         INNER JOIN comment c on Article.article_id = c.article_id
+        INNER JOIN Admin d on c.admin_id=d.admin_id
         WHERE notify = false AND A.admin_id = #{admin_id}
         ORDER BY comm_time DESC
     </select>
